@@ -117,5 +117,5 @@ stages:
                     provider: 'azurerm'
                     command: 'apply'
                     workingDirectory: '$(System.DefaultWorkingDirectory)/envs/dev'
-                    environmentServiceNameAzureRM: '<your-service-connection-name>'
+                    environmentServiceNameAzureRM: 'azure-terraform-sc'
                     commandOptions: '$(Pipeline.Workspace)/tfplan/tfplan'
