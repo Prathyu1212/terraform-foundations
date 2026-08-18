@@ -64,7 +64,7 @@ stages:
               provider: 'azurerm'
               command: 'init'
               workingDirectory: '$(System.DefaultWorkingDirectory)/envs/dev'
-              backendServiceArm: '<your-service-connection-name>'
+              backendServiceArm: 'azure-terraform-sc'
               backendAzureRmResourceGroupName: 'rg-terraform-state'
               backendAzureRmStorageAccountName: 'sttfstateyourinitials01'
               backendAzureRmContainerName: 'tfstate'
@@ -76,7 +76,7 @@ stages:
               provider: 'azurerm'
               command: 'plan'
               workingDirectory: '$(System.DefaultWorkingDirectory)/envs/dev'
-              environmentServiceNameAzureRM: '<your-service-connection-name>'
+              environmentServiceNameAzureRM: 'azure-terraform-sc'
               commandOptions: '-out=tfplan'
 
           - publish: '$(System.DefaultWorkingDirectory)/envs/dev/tfplan'
