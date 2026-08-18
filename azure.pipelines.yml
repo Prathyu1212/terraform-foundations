@@ -28,7 +28,7 @@ stages:
               cd envs/dev
               terraform init -backend=false
               terraform validate
-- stage: StaticAnalysis
+  - stage: StaticAnalysis
     displayName: 'Static Analysis'
     dependsOn: Validate
     jobs:
@@ -48,7 +48,7 @@ stages:
               tfsec envs/dev
             displayName: 'tfsec'
 
-- stage: Plan
+  - stage: Plan
     displayName: 'Terraform Plan'
     dependsOn: StaticAnalysis
     jobs:
