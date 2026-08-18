@@ -66,7 +66,7 @@ stages:
               workingDirectory: '$(System.DefaultWorkingDirectory)/envs/dev'
               backendServiceArm: 'azure-terraform-sc'
               backendAzureRmResourceGroupName: 'rg-terraform-state'
-              backendAzureRmStorageAccountName: 'sttfstateyourinitials01'
+              backendAzureRmStorageAccountName: 'sttffoundation2787'
               backendAzureRmContainerName: 'tfstate'
               backendAzureRmKey: 'foundations-dev.terraform.tfstate'
 
