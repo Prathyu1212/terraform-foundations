@@ -75,13 +75,8 @@ stages:
                 export ARM_CLIENT_SECRET=$servicePrincipalKey
                 export ARM_TENANT_ID=$tenantId
                 export ARM_SUBSCRIPTION_ID=$(az account show --query id -o tsv)
-
                 cd envs/dev
-                terraform init \
-                  -backend-config="resource_group_name=rg-terraform-state" \
-                  -backend-config="storage_account_name=sttffoundation2787" \
-                  -backend-config="container_name=tfstate" \
-                  -backend-config="key=foundations-dev.terraform.tfstate"
+                terraform init -backend-config="resource_group_name=rg-terraform-state" -backend-config="storage_account_name=sttffoundation2787" -backend-config="container_name=tfstate" -backend-config="key=foundations-dev.terraform.tfstate"
                 terraform plan -out=tfplan
 
           - publish: '$(System.DefaultWorkingDirectory)/envs/dev/tfplan'
@@ -116,3 +111,11 @@ stages:
                     scriptType: bash
                     scriptLocation: inlineScript
                     addSpnToEnvironment: true
+                    inlineScript: |
+                      export ARM_CLIENT_ID=$servicePrincipalId
+                      export ARM_CLIENT_SECRET=$servicePrincipalKey
+                      export ARM_TENANT_ID=$tenantId
+                      export ARM_SUBSCRIPTION_ID=$(az account show --query id -o tsv)
+                      cd envs/dev
+                      terraform init -backend-config="resource_group_name=rg-terraform-state" -backend-config="storage_account_name=sttffoundation2787" -backend-config="container_name=tfstate" -backend-config="key=foundations-dev.terraform.tfstate"
+                      terraform apply "$(Pipeline.Workspace)/tfplan/tfplan"
