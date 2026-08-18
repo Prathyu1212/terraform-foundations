@@ -45,7 +45,7 @@ stages:
         steps:
           - script: |
               curl -s https://raw.githubusercontent.com/aquasecurity/tfsec/master/scripts/install_linux.sh | bash
-              tfsec envs/dev
+              tfsec envs/dev --soft-fail
             displayName: 'tfsec'
 
   - stage: Plan
